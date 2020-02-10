@@ -72,45 +72,27 @@ int		identify_right_monomes(t_data *d, int i, int j)
 
 void	reduce_equation(t_data *d)
 {
-	int		isEqual;
-
-	isEqual = 0;
 	if (d->lequ.m.a == 0 && d->requ.m.a == 0)
 	{
 		if ((d->lequ.m.b == 0 && d->requ.m.b == 0) || (d->lequ.m.b == d->requ.m.b))
 		{
 			d->m.c = d->lequ.m.c - d->requ.m.c;
 			display_degree_0(d);
-			// call solve degree 0
-			printf("\n\nprintf reduced form: %f = 0\n", d->m.c);
 		}
 		else if (d->lequ.m.b != 0 || d->requ.m.b != 0)
 		{
-			if (d->lequ.m.b == d->requ.m.b && d->lequ.m.c == d->requ.m.c)
-				isEqual = 1;
-			else
-			{
-				d->m.b = d->lequ.m.b - d->requ.m.b;
-				d->m.c = d->lequ.m.c - d->requ.m.c;
-			}
-			// call print and solve degree 1
-			printf("\n\nprintf reduced form: %fX + %f = 0\n", d->m.b, d->m.c);
+			d->m.b = d->lequ.m.b - d->requ.m.b;
+			d->m.c = d->lequ.m.c - d->requ.m.c;
+			display_degree_1(d);
 		}
 	}
 	else if (d->lequ.m.a != 0 || d->requ.m.a != 0)
 	{
-		if (d->lequ.m.a == d->requ.m.a && d->lequ.m.b == d->requ.m.b && d->lequ.m.c == d->requ.m.c)
-			isEqual = 1;
-		else
-		{
-			d->m.a = d->lequ.m.a - d->requ.m.a;
-			d->m.b = d->lequ.m.b - d->requ.m.b;
-			d->m.c = d->lequ.m.c - d->requ.m.c;
-		}
-		// call print and solve degree 2
-		printf("\n\nprintf reduced form: %fX ^ 2 + %fX + %f = 0\n", d->m.a, d->m.b, d->m.c);
+		d->m.a = d->lequ.m.a - d->requ.m.a;
+		d->m.b = d->lequ.m.b - d->requ.m.b;
+		d->m.c = d->lequ.m.c - d->requ.m.c;
+		display_degree_2(d);
 	}
-	printf("blabla %d\n", isEqual);
 }
 
 void	reduce(t_data *d)

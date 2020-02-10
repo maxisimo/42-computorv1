@@ -51,6 +51,8 @@ void			reduce(t_data *d);
 
 /* Display functions */
 void			display_degree_0(t_data *d);
+void			display_degree_1(t_data *d);
+void			display_degree_2(t_data *d);
 
 /* Adapted functions from my libft and utils functions*/
 int				ft_error(int code);
