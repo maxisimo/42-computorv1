@@ -1,0 +1,126 @@
+#include "computorv1.h"
+
+int		identify_left_monomes(t_data *d, int i, int j)
+{
+	while (d->lequ.tab[i])
+	{
+		j = 0;
+		if (ft_strchr(d->lequ.tab[i], 'x') == NULL && ft_strchr(d->lequ.tab[i], 'X') == NULL)
+			d->lequ.m.c += (float)ft_atoi(d->lequ.tab[i]);
+		else if (ft_strchr(d->lequ.tab[i], '^') == NULL)
+			d->lequ.m.b += (float)ft_atoi(d->lequ.tab[i]);
+		else if (ft_strchr(d->lequ.tab[i], '^') != NULL)
+		{
+			while (d->lequ.tab[i][j])
+			{
+				if (d->lequ.tab[i][j] == '^')
+				{
+					d->degree = d->lequ.tab[i][++j] - '0';
+					if (d->lequ.tab[i][j + 2] >= 48 && 57 <= d->lequ.tab[i][j + 2])
+						ft_error(UPPER_DEGREE);
+					if (d->degree == 2)
+						d->lequ.m.a += (float)ft_atoi(d->lequ.tab[i]);
+					else if (d->degree == 1)
+						d->lequ.m.b += (float)ft_atoi(d->lequ.tab[i]);
+					else if (d->degree == 0)
+						d->lequ.m.c += (float)ft_atoi(d->lequ.tab[i]);
+					else if (d->degree > 2)
+						ft_error(d->degree);
+				}
+				j++;
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+int		identify_right_monomes(t_data *d, int i, int j)
+{
+	while (d->requ.tab[i])
+	{
+		j = 0;
+		if (ft_strchr(d->requ.tab[i], 'x') == NULL && ft_strchr(d->requ.tab[i], 'X') == NULL)
+			d->requ.m.c += (float)ft_atoi(d->requ.tab[i]);
+		else if (ft_strchr(d->requ.tab[i], '^') == NULL)
+			d->requ.m.b = (float)ft_atoi(d->requ.tab[i]);
+		else if (ft_strchr(d->requ.tab[i], '^') != NULL)
+		{
+			while (d->requ.tab[i][j])
+			{
+				if (d->requ.tab[i][j] == '^')
+				{
+					d->degree = d->requ.tab[i][++j] - '0';
+					if (d->requ.tab[i][j + 2] >= 48 && 57 <= d->requ.tab[i][j + 2])
+						ft_error(UPPER_DEGREE);
+					if (d->degree == 2)
+						d->requ.m.a += (float)ft_atoi(d->requ.tab[i]);
+					else if (d->degree == 1)
+						d->requ.m.b += (float)ft_atoi(d->requ.tab[i]);
+					else if (d->degree == 0)
+						d->requ.m.c += (float)ft_atoi(d->requ.tab[i]);
+					else if (d->degree > 2)
+						ft_error(d->degree);
+				}
+				j++;
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+void	reduce_equation(t_data *d)
+{
+	int		isEqual;
+
+	isEqual = 0;
+	if (d->lequ.m.a == 0 && d->requ.m.a == 0)
+	{
+		if ((d->lequ.m.b == 0 && d->requ.m.b == 0) || (d->lequ.m.b == d->requ.m.b))
+		{
+			d->m.c = d->lequ.m.c - d->requ.m.c;
+			display_degree_0(d);
+			// call solve degree 0
+			printf("\n\nprintf reduced form: %f = 0\n", d->m.c);
+		}
+		else if (d->lequ.m.b != 0 || d->requ.m.b != 0)
+		{
+			if (d->lequ.m.b == d->requ.m.b && d->lequ.m.c == d->requ.m.c)
+				isEqual = 1;
+			else
+			{
+				d->m.b = d->lequ.m.b - d->requ.m.b;
+				d->m.c = d->lequ.m.c - d->requ.m.c;
+			}
+			// call print and solve degree 1
+			printf("\n\nprintf reduced form: %fX + %f = 0\n", d->m.b, d->m.c);
+		}
+	}
+	else if (d->lequ.m.a != 0 || d->requ.m.a != 0)
+	{
+		if (d->lequ.m.a == d->requ.m.a && d->lequ.m.b == d->requ.m.b && d->lequ.m.c == d->requ.m.c)
+			isEqual = 1;
+		else
+		{
+			d->m.a = d->lequ.m.a - d->requ.m.a;
+			d->m.b = d->lequ.m.b - d->requ.m.b;
+			d->m.c = d->lequ.m.c - d->requ.m.c;
+		}
+		// call print and solve degree 2
+		printf("\n\nprintf reduced form: %fX ^ 2 + %fX + %f = 0\n", d->m.a, d->m.b, d->m.c);
+	}
+	printf("blabla %d\n", isEqual);
+}
+
+void	reduce(t_data *d)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	identify_left_monomes(d, i, j);
+	identify_right_monomes(d, i, j);
+	reduce_equation(d);
+}
