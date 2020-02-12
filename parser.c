@@ -47,7 +47,7 @@ int		check_chars(char *str)
 void	parser(t_data *d, char *str)
 {
 	if (check_chars(str) == UNDEFINED_CHAR)
-		ft_error(UNDEFINED_CHAR);
+		ft_error(UNDEFINED_CHAR, d);
 	str = clean(str);
 	d->equ = ft_strsplit(str, '=');
 	d->lequ.tab = ft_strsplit2(d->equ[0], '+', '-');
