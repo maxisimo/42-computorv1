@@ -4,6 +4,7 @@ SRC = main.c \
 	  parser.c \
 	  reduce.c \
 	  display.c \
+	  solve.c \
 	  utils.c \
 	  utils2.c
 
@@ -18,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -lm
 
 clean:
 	rm -rf $(OBJ)
