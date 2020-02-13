@@ -9,7 +9,7 @@
 
 # define SYMBOL "+-=^*."
 # define UNDEFINED_CHAR 1
-# define UPPER_DEGREE 2
+# define UNDEFINED_POWER 2
 
 # define STEP1 1
 
@@ -43,6 +43,8 @@ typedef struct	s_data
 {
 	int			degree;
 	float		delta;
+	float		denominator;
+	double		square;
 	char		**equ;
 	char		**tab;
 	char		*current_monomial;

@@ -6,7 +6,15 @@ int		ft_error(int code, t_data *d)
 	{
 		ft_putstr("Undefined char has been detected !\n");
 		ft_putstr("Authorised chars : \"0123456789+-=^*.xX \"\n\n");
-		ft_putstr("For more informations please enter : ./computorv1 -h\n");
+		ft_putstr("For more informations please refer to the README.md\n");
+	}
+	else if (code == UNDEFINED_POWER)
+	{
+		ft_putstr("Current monomial: ");
+		ft_putstr(d->current_monomial);
+		ft_putstr("\nUndefined power has been detected !\n");
+		ft_putstr("Authorised power: 0 1 2, otherwise any numbers will be accept but I'll can't solve.\n\n");
+		ft_putstr("For more informations please refer to the README.md\n");
 	}
 	else if (code >= 3)
 	{
@@ -40,7 +48,7 @@ void	ft_adapt_putnbr(float n)
 		nb = -nb;
 		ft_putchar('-');
 	}
-	if (decimal - n == 0)
+	if (fabs(decimal) - fabs(n) == 0)
 		ft_putchar('0');
 	while (nb != 0)
 	{
