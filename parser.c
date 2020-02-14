@@ -50,14 +50,15 @@ void	parser(t_data *d, char *str)
 		ft_error(UNDEFINED_CHAR, d);
 	str = clean(str);
 	d->equ = ft_strsplit(str, '=');
-	d->lequ.tab = ft_strsplit2(d->equ[0], '+', '-');
-	d->requ.tab = ft_strsplit2(d->equ[1], '+', '-');
+	if (str[0] == '=')
+	{
+		d->lequ.tab = ft_strsplit2("0", '+', '-');
+		d->requ.tab = (d->equ[0]) ? ft_strsplit2(d->equ[0], '+', '-') : ft_strsplit2("0", '+', '-');
+	}
+	else
+	{
+		d->lequ.tab = ft_strsplit2(d->equ[0], '+', '-');
+		d->requ.tab = (d->equ[1]) ? ft_strsplit2(d->equ[1], '+', '-') : ft_strsplit2("0", '+', '-');
+	}
 	reduce(d);
-	// printf("1 left monome : %f\n", d->lequ.m.a);
-	// printf("2 left monome : %f\n", d->lequ.m.b);
-	// printf("3 left monome : %f\n", d->lequ.m.c);
-	// printf("------------------------\n");
-	// printf("1 right monome : %f\n", d->requ.m.a);
-	// printf("2 right monome : %f\n", d->requ.m.b);
-	// printf("3 right monome : %f\n", d->requ.m.c);
 }
