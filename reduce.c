@@ -7,9 +7,9 @@ int		identify_left_monomes(t_data *d, int i, int j)
 		d->current_monomial = d->lequ.tab[i];
 		j = 0;
 		if (ft_strchr(d->lequ.tab[i], 'x') == NULL && ft_strchr(d->lequ.tab[i], 'X') == NULL)
-			d->lequ.m.c += (float)ft_atoi(d->lequ.tab[i]);
+			d->lequ.m.c += (float)ft_adapt_atoi(d->lequ.tab[i]);
 		else if (ft_strchr(d->lequ.tab[i], '^') == NULL)
-			d->lequ.m.b += (float)ft_atoi(d->lequ.tab[i]);
+			d->lequ.m.b += (float)ft_adapt_atoi(d->lequ.tab[i]);
 		else if (ft_strchr(d->lequ.tab[i], '^') != NULL)
 		{
 			while (d->lequ.tab[i][j])
@@ -25,11 +25,11 @@ int		identify_left_monomes(t_data *d, int i, int j)
 						j++;
 					}
 					if (d->degree == 2)
-						d->lequ.m.a += (float)ft_atoi(d->lequ.tab[i]);
+						d->lequ.m.a += (float)ft_adapt_atoi(d->lequ.tab[i]);
 					else if (d->degree == 1)
-						d->lequ.m.b += (float)ft_atoi(d->lequ.tab[i]);
+						d->lequ.m.b += (float)ft_adapt_atoi(d->lequ.tab[i]);
 					else if (d->degree == 0)
-						d->lequ.m.c += (float)ft_atoi(d->lequ.tab[i]);
+						d->lequ.m.c += (float)ft_adapt_atoi(d->lequ.tab[i]);
 					else if (d->degree > 2)
 						ft_error(d->degree, d);
 				}
@@ -48,9 +48,9 @@ int		identify_right_monomes(t_data *d, int i, int j)
 		j = 0;
 		d->degree = 0;
 		if (ft_strchr(d->requ.tab[i], 'x') == NULL && ft_strchr(d->requ.tab[i], 'X') == NULL)
-			d->requ.m.c += (float)ft_atoi(d->requ.tab[i]);
+			d->requ.m.c += (float)ft_adapt_atoi(d->requ.tab[i]);
 		else if (ft_strchr(d->requ.tab[i], '^') == NULL)
-			d->requ.m.b += (float)ft_atoi(d->requ.tab[i]);
+			d->requ.m.b += (float)ft_adapt_atoi(d->requ.tab[i]);
 		else if (ft_strchr(d->requ.tab[i], '^') != NULL)
 		{
 			while (d->requ.tab[i][j])
@@ -64,11 +64,11 @@ int		identify_right_monomes(t_data *d, int i, int j)
 						j++;
 					}
 					if (d->degree == 2)
-						d->requ.m.a += (float)ft_atoi(d->requ.tab[i]);
+						d->requ.m.a += (float)ft_adapt_atoi(d->requ.tab[i]);
 					else if (d->degree == 1)
-						d->requ.m.b += (float)ft_atoi(d->requ.tab[i]);
+						d->requ.m.b += (float)ft_adapt_atoi(d->requ.tab[i]);
 					else if (d->degree == 0)
-						d->requ.m.c += (float)ft_atoi(d->requ.tab[i]);
+						d->requ.m.c += (float)ft_adapt_atoi(d->requ.tab[i]);
 					else if (d->degree > 2)
 					{
 						d->current_monomial = d->requ.tab[i];

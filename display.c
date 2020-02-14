@@ -108,7 +108,10 @@ void	display_degree_2(t_data *d)
 		{
 			if (d->lequ.m.c == d->requ.m.c)
 			{
-				ft_adapt_putnbr(d->m.a);
+				if (d->m.a == -1)
+					ft_putchar('-');
+				if (d->m.a != 1 && d->m.a != -1)
+					ft_adapt_putnbr(d->m.a);
 				ft_putstr("x^2");
 			}
 			else

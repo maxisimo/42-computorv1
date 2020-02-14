@@ -71,6 +71,7 @@ void			solve(t_data *d);
 /* Adapted functions from my libft and utils functions*/
 int				ft_error(int code, t_data *d);
 void			ft_adapt_putnbr(float n);
+double			ft_adapt_atoi(char const *str);
 
 /* Utils functions from my Libft */
 void			ft_bzero(void *s, size_t n);
@@ -81,7 +82,6 @@ char			**ft_strsplit(const char *s, char c);
 char			**ft_strsplit2(const char *s, char c, char c2);
 size_t			ft_strlen(const char *str);
 int				ft_isdigit(int c);
-double			ft_atoi(char const *str);
 void			ft_putnbr(int n);
 
 #endif

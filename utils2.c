@@ -204,62 +204,6 @@ char			**ft_strsplit2(char const *s, char c, char c2)
 	return (tab);
 }
 
-double	ft_pow(int nb, int power)
-{
-	int		i;
-	double	res;
-
-	i = 0;
-	res = 1;
-	while (i < power)
-	{
-		res = res * nb;
-		i++;
-	}
-	return (res);
-}
-
-double	ft_atoi(char const *str)
-{
-	int		is_negative;
-	size_t	i;
-	double	integer;
-	int		power;
-
-	is_negative = 0;
-	i = 0;
-	integer = 0;
-	power = -1;
-	if (str[0] == 'x' || str[0] == 'X')
-		return 1;
-	if (str[0] == '-' && (str[1] == 'x' || str[1] == 'X'))
-		return (-1);
-	while ((str[i] == '\n') || (str[i] == '\t') || (str[i] == '\v') \
-		|| (str[i] == ' ') || (str[i] == '\f') || (str[i] == '\r'))
-		i++;
-	if (str[i] == '-')
-		is_negative = 1;
-	if (str[i] == '-' || str[i] == '+' || str[i] == '.')
-		i++;
-	while (str[i] && str[i] != '^')
-	{
-		if (str[i] == '.' && power == -1)
-			power = 0;
-		if (str[i] >= 48 && str[i] <= 57)
-		{
-			integer = integer * 10 + (str[i] - '0');
-			if (power >= 0)
-				power++;
-		}
-		i++;
-	}
-	if (is_negative)
-		integer = integer * -1;
-	if (power != -1)
-		integer = integer / ft_pow(10, power);
-	return (integer);
-}
-
 void	ft_putnbr(int n)
 {
 	long	nb;
