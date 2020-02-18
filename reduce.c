@@ -87,7 +87,7 @@ void	reduce_equation(t_data *d)
 {
 	if (d->lequ.m.a == 0 && d->requ.m.a == 0)
 	{
-		if ((d->lequ.m.b == 0 && d->requ.m.b == 0) || (d->lequ.m.b == d->requ.m.b))
+		if (d->lequ.m.b == 0 && d->requ.m.b == 0)
 		{
 			d->m.c = d->lequ.m.c - d->requ.m.c;
 			display_degree_0(d);

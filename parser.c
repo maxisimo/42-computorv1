@@ -30,15 +30,10 @@ int		check_chars(char *str)
 	while (str[i])
 	{
 		j = 0;
-		if ((ft_isdigit(str[i]) == 0) && str[i] != 'x' && str[i] != 'X' && str[i] != ' ')
-		{
-			while (SYMBOL[j] && (str[i] != SYMBOL[j]))
-				j++;
-			if (j == ft_strlen(SYMBOL))
-			{
-				return (UNDEFINED_CHAR);
-			}
-		}
+		while (SYMBOL[j] && (str[i] != SYMBOL[j]))
+			j++;
+		if (j == ft_strlen(SYMBOL))
+			return (UNDEFINED_CHAR);
 		i++;
 	}
 	return 0;
@@ -52,13 +47,14 @@ void	parser(t_data *d, char *str)
 	d->equ = ft_strsplit(str, '=');
 	if (str[0] == '=')
 	{
-		d->lequ.tab = ft_strsplit2("0", '+', '-');
-		d->requ.tab = (d->equ[0]) ? ft_strsplit2(d->equ[0], '+', '-') : ft_strsplit2("0", '+', '-');
+		d->lequ.tab = ft_adapt_strsplit("0", '+', '-');
+		d->requ.tab = (d->equ[0]) ? ft_adapt_strsplit(d->equ[0], '+', '-') : ft_adapt_strsplit("0", '+', '-');
 	}
 	else
 	{
-		d->lequ.tab = ft_strsplit2(d->equ[0], '+', '-');
-		d->requ.tab = (d->equ[1]) ? ft_strsplit2(d->equ[1], '+', '-') : ft_strsplit2("0", '+', '-');
+		d->lequ.tab = ft_adapt_strsplit(d->equ[0], '+', '-');
+		d->requ.tab = (d->equ[1]) ? ft_adapt_strsplit(d->equ[1], '+', '-') : ft_adapt_strsplit("0", '+', '-');
 	}
 	reduce(d);
+	free(str);
 }

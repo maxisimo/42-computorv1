@@ -5,8 +5,9 @@ int		ft_error(int code, t_data *d)
 	if (code == UNDEFINED_CHAR)
 	{
 		ft_putstr("Undefined char has been detected !\n");
-		ft_putstr("Authorised chars : \"0123456789+-=^*.xX \"\n\n");
-		ft_putstr("For more informations please refer to the README.md\n");
+		ft_putstr("Authorised chars : \"");
+		ft_putstr(SYMBOL);
+		ft_putstr("\"\n\nFor more informations please refer to the README.md\n");
 	}
 	else if (code == UNDEFINED_POWER)
 	{
@@ -39,8 +40,8 @@ void	ft_adapt_putnbr(float n)
 
 	i = 0;
 	decimal = (n >= 0) ? n - (int)n : -(n - (int)n);
-	decimal *= 10e6;
-	n *= 10e6;
+	decimal *= 10e5;
+	n *= 10e5;
 	dec = (int)decimal;
 	nb = (int)n;
 	if (nb < 0)
@@ -56,7 +57,7 @@ void	ft_adapt_putnbr(float n)
 		nb = nb / 10;
 		i++;
 	}
-	while (i > 7)
+	while (i > 6)
 	{
 		i--;
 		ft_putchar(tab[i] + '0');
@@ -64,6 +65,7 @@ void	ft_adapt_putnbr(float n)
 	if (dec != 0)
 	{
 		ft_putchar('.');
+		i = 0;
 		j = 0;
 		while (dec != 0)
 		{
@@ -71,12 +73,33 @@ void	ft_adapt_putnbr(float n)
 			dec = dec / 10;
 			j++;
 		}
-		while (j > 0)
+		if (tab2[i] == 0)
+			while (tab2[i] == 0)
+				i++;
+		while (j > i)
 		{
 			j--;
 			ft_putchar(tab2[j] + '0');
 		}
 	}
+}
+
+void	ft_adapt_putstr(char const *s, ...)
+{
+	int		i;
+	float	nb;
+	va_list	ap;
+
+	i = 0;
+	va_start(ap, s);
+	nb = va_arg(ap, double);
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	ft_adapt_putnbr((float)nb);
+	va_end(ap);
 }
 
 double	ft_adapt_atoi(char const *str)
@@ -118,4 +141,96 @@ double	ft_adapt_atoi(char const *str)
 	if (power != -1)
 		integer = integer / pow(10, power);
 	return (integer);
+}
+
+char	*ft_adapt_strsub(const char *s, unsigned int start, size_t len, int neg)
+{
+	size_t	i;
+	size_t	j;
+	char	*s1;
+
+	i = 0;
+	j = 0;
+	if (neg == 1)
+	{
+		if (!(s1 = (char*)malloc(sizeof(*s1) * (len + 2))))
+			return (NULL);
+		s1[j] = '-';
+		j = 1;
+		len += 1;
+	}
+	else
+		if (!(s1 = (char*)malloc(sizeof(*s1) * (len + 1))))
+			return (NULL);
+	while (i < len)
+	{
+		s1[j] = s[start + i];
+		i++;
+		j++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}
+
+static int	ft_size(char *s, char c, char c2)
+{
+	int i;
+
+	i = 0;
+	while (*s != c && *s != c2 && *s)
+	{
+		i++;
+		s++;
+	}
+	return (i);
+}
+
+static int	ft_count(const char *s, char c, char c2)
+{
+	int nb;
+	int new_word;
+
+	nb = 0;
+	new_word = 0;
+	while (*s)
+	{
+		if (*s == c || *s == c2)
+			new_word = 0;
+		if (*s != c && *s != c2 && new_word == 0)
+		{
+			new_word = 1;
+			nb++;
+		}
+		s++;
+	}
+	return (nb);
+}
+
+char		**ft_adapt_strsplit(const char *s, char c, char c2)
+{
+	char	**array;
+	int		i;
+	int		nb_words;
+	int		neg;
+
+	i = 0;
+	neg = 0;
+	nb_words = ft_count((char*)s, c, c2);
+	array = (char **)malloc(sizeof(char*) * (nb_words + 1));
+	if (!array)
+		return (NULL);
+	while (nb_words--)
+	{
+		if (*s == c2)
+			neg = 1;
+		while ((*s == c || *s == c2) && *s)
+			s++;
+		if (!(array[i] = ft_adapt_strsub(s, 0, ft_size((char*)s, c, c2), neg)))
+			return (NULL);
+		neg = 0;
+		s = s + ft_size((char*)s, c, c2);
+		i++;
+	}
+	array[i] = NULL;
+	return (array);
 }

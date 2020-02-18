@@ -6,8 +6,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdarg.h>
 
-# define SYMBOL "+-=^*."
+# define SYMBOL "0123456789xX +-=^*."
 # define UNDEFINED_CHAR 1
 # define UNDEFINED_POWER 2
 
@@ -71,17 +72,17 @@ void			solve(t_data *d);
 /* Adapted functions from my libft and utils functions*/
 int				ft_error(int code, t_data *d);
 void			ft_adapt_putnbr(float n);
+void			ft_adapt_putstr(char const *s, ...);
 double			ft_adapt_atoi(char const *str);
+char			**ft_adapt_strsplit(const char *s, char c, char c2);
 
 /* Utils functions from my Libft */
 void			ft_bzero(void *s, size_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 char			*ft_strchr(const char *s, int c);
-char			**ft_strsplit(const char *s, char c);
-char			**ft_strsplit2(const char *s, char c, char c2);
 size_t			ft_strlen(const char *str);
-int				ft_isdigit(int c);
 void			ft_putnbr(int n);
+char			**ft_strsplit(const char *s, char c);
 
 #endif

@@ -1,22 +1,60 @@
 #include "computorv1.h"
 
+void	display_equalities(t_data *d)
+{
+	if (d->degree == 0)
+	{
+		ft_adapt_putnbr(d->lequ.m.c);
+		ft_putstr("x^0");
+	}
+	else if (d->degree == 1)
+	{
+		if (d->lequ.m.b == -1)
+			ft_putchar('-');
+		if (d->lequ.m.b != 1 && d->lequ.m.b != -1)
+			ft_adapt_putnbr(d->lequ.m.b);
+		if (d->lequ.m.c == 0)
+			ft_putchar('x');
+		else
+			(d->lequ.m.c > 0) ? ft_adapt_putstr("x + ", d->lequ.m.c) : ft_adapt_putstr("x - ", -d->lequ.m.c);
+	}
+	else
+	{
+		if (d->m.a == -1)
+			ft_putchar('-');
+		if (d->m.a != 1 && d->m.a != -1)
+			ft_adapt_putnbr(d->m.a);
+		if (d->lequ.m.b != 0)
+		{
+			if (d->lequ.m.c != 0)
+			{
+				(d->lequ.m.b > 0) ? ft_adapt_putstr("x^2 + ", d->lequ.m.b) : ft_adapt_putstr("x^2 - ", -d->lequ.m.b);
+				(d->lequ.m.c > 0) ? ft_adapt_putstr("x + ", d->lequ.m.c) : ft_adapt_putstr("x - ", -d->lequ.m.c);
+			}
+			else
+				(d->lequ.m.c > 0) ? ft_adapt_putstr("x^2 + ", d->lequ.m.c) : ft_adapt_putstr("x^2 - ", -d->lequ.m.c);
+		}
+		else
+			(d->lequ.m.b > 0) ? ft_adapt_putstr("x^2 + ", d->lequ.m.b) : ft_adapt_putstr("x^2 - ", -d->lequ.m.b);
+	}
+	d->degree = 0;
+}
+
 void	display_degree_0(t_data *d)
 {
 	d->degree = 0;
 
+	ft_putstr("Reduced form: ");
 	if (d->lequ.m.c == d->requ.m.c)
 	{
-		ft_putstr("Reduced form: ");
-		ft_adapt_putnbr(d->lequ.m.c);
-		ft_putstr(" * x^0 = ");
-		ft_adapt_putnbr(d->requ.m.c);
-		ft_putstr(" * x^0\n");
-		ft_putstr("Polynomial degree: 0\n");
+		display_equalities(d);
+		ft_putstr(" = ");
+		display_equalities(d);
+		ft_putstr("\nPolynomial degree: 0\n");
 		ft_putstr("All reals numbers are solution.\n");
 	}
 	else
 	{
-		ft_putstr("Reduced form: ");
 		ft_adapt_putnbr(d->m.c);
 		ft_putstr(" = 0");
 		ft_putstr("\nPolynomial degree: 0\n");
@@ -28,18 +66,16 @@ void	display_degree_1(t_data *d)
 {
 	d->degree = 1;
 
-	if (d->lequ.m.b == d->requ.m.b)
+	if (d->m.b == 0)
+		display_degree_0(d);
+	else if (d->m.b != 0 && d->lequ.m.b == d->requ.m.b)
 	{
 		if (d->lequ.m.c == d->requ.m.c)
 		{
 			ft_putstr("Reduced form: ");
-			ft_adapt_putnbr(d->lequ.m.b);
-			(d->lequ.m.c >= 0) ? ft_putstr("x + ") : ft_putstr("x - ");
-			(d->lequ.m.c >= 0) ? ft_adapt_putnbr(d->lequ.m.c) : ft_adapt_putnbr(-d->lequ.m.c);
+			display_equalities(d);
 			ft_putstr(" = ");
-			ft_adapt_putnbr(d->requ.m.b);
-			(d->requ.m.c >= 0) ? ft_putstr("x + ") : ft_putstr("x - ");
-			(d->requ.m.c >= 0) ? ft_adapt_putnbr(d->requ.m.c) : ft_adapt_putnbr(-d->requ.m.c);
+			display_equalities(d);
 			ft_putstr("\nPolynomial degree: 1\n");
 			ft_putstr("All reals numbers are solution.\n");
 		}
@@ -48,24 +84,17 @@ void	display_degree_1(t_data *d)
 	}
 	else
 	{
-		ft_putstr("Reduced form: ");
+		(d->m.b == -1) ? ft_putstr("Reduced form: -") : ft_putstr("Reduced form: ");
+		if (d->m.b != 1 && d->m.b != -1)
+			(d->m.b > 0) ? ft_adapt_putnbr(d->m.b) : ft_adapt_putnbr(-d->m.b);
 		if (d->lequ.m.c == d->requ.m.c)
-		{
-			if (d->m.b != 1 && d->m.b != -1)
-				(d->m.b > 0) ? ft_adapt_putnbr(d->m.b) : ft_adapt_putnbr(-d->m.b);
 			ft_putchar('x');
-		}
 		else
-		{
-			ft_adapt_putnbr(d->m.b);
-			(d->m.c >= 0) ? ft_putstr("x + ") : ft_putstr("x - ");
-			(d->m.c >= 0) ? ft_adapt_putnbr(d->m.c) : ft_adapt_putnbr(-d->m.c);
-		}
+			(d->m.c >= 0) ? ft_adapt_putstr("x + ", d->m.c) : ft_adapt_putstr("x - ", -d->m.c);
 		ft_putstr(" = 0\n");
 		ft_putstr("Polynomial degree: 1\n");
 		solve(d);
-		ft_putstr("The solution is: ");
-		ft_adapt_putnbr(d->result.x1);
+		ft_adapt_putstr("The solution is: ", d->result.x1);
 		ft_putchar('\n');
 	}
 }
@@ -74,24 +103,18 @@ void	display_degree_2(t_data *d)
 {
 	d->degree = 2;
 
-	if (d->lequ.m.a == d->requ.m.a)
+	if (d->m.a == 0)
+		display_degree_1(d);
+	else if (d->m.a != 0 && d->lequ.m.a == d->requ.m.a)
 	{
 		if (d->lequ.m.b == d->requ.m.b)
 		{
 			if (d->lequ.m.c == d->requ.m.c)
 			{
 				ft_putstr("Reduced form: ");
-				ft_adapt_putnbr(d->lequ.m.a);
-				(d->lequ.m.b >= 0) ? ft_putstr("x^2 + ") : ft_putstr("x^2 - ");
-				(d->lequ.m.b >= 0) ? ft_adapt_putnbr(d->lequ.m.b) : ft_adapt_putnbr(-d->lequ.m.b);
-				(d->lequ.m.c >= 0) ? ft_putstr("x + ") : ft_putstr("x - ");
-				(d->lequ.m.c >= 0) ? ft_adapt_putnbr(d->lequ.m.c) : ft_adapt_putnbr(-d->lequ.m.c);
+				display_equalities(d);
 				ft_putstr(" = ");
-				ft_adapt_putnbr(d->requ.m.a);
-				(d->requ.m.b >= 0) ? ft_putstr("x^2 + ") : ft_putstr("x^2 - ");
-				(d->requ.m.b >= 0) ? ft_adapt_putnbr(d->requ.m.b) : ft_adapt_putnbr(-d->requ.m.b);
-				(d->requ.m.c >= 0) ? ft_putstr("x + ") : ft_putstr("x - ");
-				(d->requ.m.c >= 0) ? ft_adapt_putnbr(d->requ.m.c) : ft_adapt_putnbr(-d->requ.m.c);
+				display_equalities(d);
 				ft_putstr("\nPolynomial degree: 2\n");
 				ft_putstr("All reals numbers are solution.\n");
 			}
@@ -202,12 +225,14 @@ void	display_degree_2(t_data *d)
 			}
 			else
 			{
-				ft_adapt_putnbr(d->result.x1);
-				ft_putstr(" * sqrt(");
-				ft_adapt_putnbr(abs(d->delta));
-				ft_putstr(") / ");
-				ft_adapt_putnbr(d->denominator);
-				ft_putstr(" * i\n");
+				ft_adapt_putnbr(-d->m.b);
+				ft_adapt_putstr(" - sqrt(", -d->delta);
+				ft_adapt_putstr(")i / ", d->denominator);
+				ft_putstr("\nx2: ");
+				ft_adapt_putnbr(-d->m.b);
+				ft_adapt_putstr(" + sqrt(", -d->delta);
+				ft_adapt_putstr(")i / ", d->denominator);
+				ft_putchar('\n');
 			}
 		}
 	}
