@@ -31,7 +31,12 @@ int		identify_left_monomes(t_data *d, int i, int j)
 					else if (d->degree == 0)
 						d->lequ.m.c += (float)ft_adapt_atoi(d->lequ.tab[i]);
 					else if (d->degree > 2)
-						ft_error(d->degree, d);
+					{
+						if ((float)ft_adapt_atoi(d->lequ.tab[i]) == 0)
+							d->lequ.m.c += (float)ft_adapt_atoi(d->lequ.tab[i]);
+						else
+							ft_error(d->degree, d);
+					}
 				}
 				j++;
 			}
