@@ -7,3 +7,9 @@
 ![Objectives](https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen)
 
 The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 projects. You will not “do math for doing math”, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
+
+## Compiling
+run `make`
+
+## Running
+`./computorv1 "x^2 -20x + 100 + 400 = 0"`
