@@ -6,7 +6,7 @@
 ![Skills](https://img.shields.io/badge/Skills-Algorithm&AI-9cf)
 ![Objectives](https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen)
 
-The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 projects. You will not “do math for doing math”, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
+The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 projects. You will not “do maths for doing maths”, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
 
 ## Compulsory part
 Write a program that solves a polynomial equation of degree less than or equal to 2. You must display at least:
