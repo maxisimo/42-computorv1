@@ -22,7 +22,7 @@ Write a program that solves a polynomial equation of degree less than or equal t
 ## Bonuses
 * Handle entry errors (lexicon and syntax).
 * Manage inputs and outputs in natural form.
-<p><img width=85% src="" /></p>
+<p><img width=85% src="https://user-images.githubusercontent.com/34480775/75038484-be32c200-54b6-11ea-9220-9ede83d5b487.JPG" /></p>
 
 ## Compiling
 run `make`
