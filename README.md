@@ -1,9 +1,8 @@
 <a href="https://www.42.fr/">
     <p><img src="https://www.universfreebox.com/UserFiles/image/site_logo.gif" alt="42 logo" title="42" align="center" /></p>
 </a>
-![alt tag](https://github.com/maxisimo/computorv1/issues/1)
+<p><img src="https://user-images.githubusercontent.com/34480775/75029136-cdf3db80-54a1-11ea-9621-936459b290e9.JPG" align="center" /></p>
 
-# ComputorV1
 ![Skills](https://img.shields.io/badge/Skills-Algorithm&AI-9cf)
 ![Objectives](https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen)
 
