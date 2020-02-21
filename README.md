@@ -10,13 +10,13 @@
 ![Objectives](https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen)
 
 
-The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 school projects. You will not “do maths for doing maths”, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
+The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 school projects. You will not do maths for doing maths, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
 
 ## Compulsory part
 Write a program that solves a polynomial equation of degree less than or equal to 2. You must display at least:
 * The reduced form of the equation.
 * The degree of the equation.
-* Its solution (s), and the sign of the discriminant when it makes sense.
+* Its solution(s), and the sign of the discriminant when it makes sense.
 <p><img width=85% src="https://user-images.githubusercontent.com/34480775/75038144-10bfae80-54b6-11ea-8d60-c88b705407d2.JPG" /></p>
 
 ## Bonuses
