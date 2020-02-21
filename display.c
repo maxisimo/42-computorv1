@@ -156,7 +156,7 @@ void	display_degree_1(t_data *d)
 	{
 		(d->m.b == -1) ? ft_putstr("Reduced form: -") : ft_putstr("Reduced form: ");
 		if (d->m.b != 1 && d->m.b != -1)
-			(d->m.b > 0) ? ft_adapt_putnbr(d->m.b) : ft_adapt_putnbr(-d->m.b);
+			ft_adapt_putnbr(d->m.b);
 		if (d->lequ.m.c == d->requ.m.c)
 			ft_putchar('x');
 		else

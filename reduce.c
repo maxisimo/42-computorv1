@@ -4,8 +4,9 @@ int		identify_left_monomes(t_data *d, int i, int j)
 {
 	while (d->lequ.tab[i])
 	{
-		d->current_monomial = d->lequ.tab[i];
 		j = 0;
+		d->degree = 0;
+		d->current_monomial = d->lequ.tab[i];
 		if (ft_strchr(d->lequ.tab[i], 'x') == NULL && ft_strchr(d->lequ.tab[i], 'X') == NULL)
 			d->lequ.m.c += (float)ft_adapt_atoi(d->lequ.tab[i]);
 		else if (ft_strchr(d->lequ.tab[i], '^') == NULL)
@@ -52,6 +53,7 @@ int		identify_right_monomes(t_data *d, int i, int j)
 	{
 		j = 0;
 		d->degree = 0;
+		d->current_monomial = d->requ.tab[i];
 		if (ft_strchr(d->requ.tab[i], 'x') == NULL && ft_strchr(d->requ.tab[i], 'X') == NULL)
 			d->requ.m.c += (float)ft_adapt_atoi(d->requ.tab[i]);
 		else if (ft_strchr(d->requ.tab[i], '^') == NULL)
@@ -63,6 +65,8 @@ int		identify_right_monomes(t_data *d, int i, int j)
 				if (d->requ.tab[i][j] == '^')
 				{
 					j++;
+					if (!(d->lequ.tab[i][j] >= 48 && 57 >= d->lequ.tab[i][j]))
+						ft_error(UNDEFINED_POWER, d);
 					while (d->requ.tab[i][j] >= 48 && 57 >= d->requ.tab[i][j])
 					{
 						d->degree = d->degree * 10 + (d->requ.tab[i][j] - '0');
