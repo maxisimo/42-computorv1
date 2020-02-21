@@ -17,10 +17,12 @@ Write a program that solves a polynomial equation of degree less than or equal t
 * The reduced form of the equation.
 * The degree of the equation.
 * Its solution (s), and the sign of the discriminant when it makes sense.
+<p><img width=85% src="https://user-images.githubusercontent.com/34480775/75038144-10bfae80-54b6-11ea-8d60-c88b705407d2.JPG" /></p>
 
 ## Bonuses
 * Handle entry errors (lexicon and syntax).
 * Manage inputs and outputs in natural form.
+<p><img width=85% src="" /></p>
 
 ## Compiling
 run `make`
