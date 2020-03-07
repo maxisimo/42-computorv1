@@ -29,5 +29,5 @@ run `make`
 ## Running
 `./computorv1 "x^2 -20x + 100 + 400 = 0"`
 
-###Rate
+# Rate
 117/100
