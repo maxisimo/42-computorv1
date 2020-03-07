@@ -3,12 +3,11 @@
 </a>
 <p align="center"><img src="https://user-images.githubusercontent.com/34480775/75029136-cdf3db80-54a1-11ea-9621-936459b290e9.JPG" /></p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![Skills](https://img.shields.io/badge/Skills-Algorithm&AI-9cf)
-![Objectives](https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen)
 
+<p align="center">
+    <img src="https://img.shields.io/badge/Skills-Algorithm&AI-9cf">
+    <img src="https://img.shields.io/badge/Objectives-Mathematics%20Basics-brightgreen">
+</p>
 
 The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 school projects. You will not do maths for doing maths, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.
 
